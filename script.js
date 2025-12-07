@@ -127,7 +127,7 @@ closeButtons.forEach(btn => {
     });
 });
 
-// Fechar clicando fora das modais
+
 document.addEventListener("click", () => {
     yesModal.classList.add("hidden");
     noModal.classList.add("hidden");
