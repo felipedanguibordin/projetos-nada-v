@@ -72,7 +72,8 @@ document.querySelectorAll(".modal-content").forEach(content => {
 });
 
 // Fuga do botão SIM
-hairYes.addEventListener("mouseover", () => {
+// FUNÇÃO DE FUGA (USADA TANTO NO DESKTOP QUANTO NO MOBILE)
+function tryEscape() {
     if (yesUnlocked) return;
 
     escapeCount++;
@@ -89,7 +90,17 @@ hairYes.addEventListener("mouseover", () => {
     } else {
         proofModal.classList.remove("hidden");
     }
+}
+
+// DESKTOP → mouseover
+hairYes.addEventListener("mouseover", tryEscape);
+
+// MOBILE → touchstart (quando ela encostar)
+hairYes.addEventListener("touchstart", (e) => {
+    e.preventDefault(); // evita clique automático
+    tryEscape();
 });
+
 
 // Enviar prova → desbloqueia SIM
 proofSent.addEventListener("click", () => {
