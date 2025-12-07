@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
     <title>Top 3 | Supernova</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -14,18 +14,19 @@
     <h1>Top 3 Supernova</h1>
 </header>
 
-<main>
-    <section class="top-container">
+<main class="container">
+
+    <!-- RANKING -->
+    <section class="card">
         <h2>Ranking Atual</h2>
 
-        <ol id="top-list" class="top-list">
-            <!-- começa vazio -->
-        </ol>
+        <ol id="top-list" class="top-list"></ol>
 
         <p class="empty-info">O top 3 ainda está vazio. Adicione alguém!</p>
     </section>
 
-    <section class="add-section">
+    <!-- ADICIONAR ARTISTA -->
+    <section class="card">
         <h2>Adicionar Artista</h2>
 
         <div class="form-row">
@@ -46,9 +47,67 @@
 
         <p id="feedback" class="feedback"></p>
     </section>
+
+    <!-- =============================== -->
+    <!-- DUAS SECTIONS LADO A LADO (S + POKE) -->
+    <!-- =============================== -->
+    <div class="bottom-row">
+
+        <!-- SECTION DO CABELO / BOTÃO S -->
+        <section class="card half hair-section">
+            <h2>Faço de novo o "S" no meu cabelo?</h2>
+
+            <div class="hair-buttons">
+                <button id="hair-yes" class="escape-btn">Sim</button>
+                <button id="hair-no">Não</button>
+            </div>
+        </section>
+
+        <!-- SECTION DO POKE -->
+        <section class="card half poke-section">
+            <h2 style="margin-bottom: 10px;">Primeiro Poke da minha vida</h2>
+
+            <div class="poke-secret">
+                <div class="poke-badge">
+                    🥢 Primeiro poke da minha vida
+                    <span class="poke-tooltip">
+                        Obrigada por me fazer gastar meu suado dinheirinho num pote de peixe cru e arroz, amor.
+                    </span>
+                </div>
+            </div>
+        </section>
+
+    </div>
 </main>
+
+<!-- MODAL DE PROVA -->
+<div id="proof-modal" class="modal hidden">
+    <div class="modal-content">
+        <h3>😏 Calma aí…</h3>
+        <p>O botão “Sim” só desbloqueia depois de eu receber uma foto na DM do Insta.</p>
+
+        <button id="proof-sent">Foto enviada</button>
+    </div>
+</div>
+
+<!-- MODAL – RESPOSTA DO SIM -->
+<div id="yes-modal" class="modal hidden">
+    <div class="modal-content">
+        <h3>😊 Pedido anotado</h3>
+        <p>Ok, seu pedido foi anotado e será revisado pelo protagonista que criou o site.</p>
+        <button class="close-modal">Fechar</button>
+    </div>
+</div>
+
+<!-- MODAL – RESPOSTA DO NÃO -->
+<div id="no-modal" class="modal hidden">
+    <div class="modal-content">
+        <h3>😒 Ah tá…</h3>
+        <p>mimimi eu nem ia fazer mesmo</p>
+        <button class="close-modal">Fechar</button>
+    </div>
+</div>
 
 <script src="script.js"></script>
 </body>
-
 </html>
