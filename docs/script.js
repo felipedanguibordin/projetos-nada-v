@@ -71,8 +71,6 @@ document.querySelectorAll(".modal-content").forEach(content => {
     content.addEventListener("click", e => e.stopPropagation());
 });
 
-// Fuga do botão SIM
-// FUNÇÃO DE FUGA (USADA TANTO NO DESKTOP QUANTO NO MOBILE)
 function tryEscape() {
     if (yesUnlocked) return;
 
@@ -92,14 +90,41 @@ function tryEscape() {
     }
 }
 
-// DESKTOP → mouseover
-hairYes.addEventListener("mouseover", tryEscape);
-
-// MOBILE → touchstart (quando ela encostar)
-hairYes.addEventListener("touchstart", (e) => {
-    e.preventDefault(); // evita clique automático
-    tryEscape();
+/* ============================
+   DESKTOP (mouseover normal)
+   ============================ */
+hairYes.addEventListener("mouseover", () => {
+    if (!isMobile()) tryEscape();
 });
+
+/* ============================
+   MOBILE — CANCELA O CLICK
+   ============================ */
+hairYes.addEventListener("touchstart", (e) => {
+    if (yesUnlocked) return; // se já desbloqueou, deixa clicar normal
+
+    e.preventDefault();      
+    e.stopPropagation();     
+    tryEscape();
+
+    // Cancelar o clique artificial que o navegador gera logo depois
+    hairYes.addEventListener(
+        "click",
+        function cancelClick(ev) {
+            if (!yesUnlocked) {
+                ev.preventDefault();
+                ev.stopPropagation();
+            }
+        },
+        { once: true }
+    );
+});
+
+// Detector simples de celular
+function isMobile() {
+    return /android|iphone|ipad|ipod/i.test(navigator.userAgent);
+}
+
 
 
 // Enviar prova → desbloqueia SIM
